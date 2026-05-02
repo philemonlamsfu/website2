@@ -1,47 +1,8 @@
-import { Fragment, useState, useEffect } from 'react';
+import { Fragment } from 'react';
 import { experiences } from '../data';
 import type { Experience as ExperienceType } from '../types';
 
 const Experience = () => {
-  const [isMobile, setIsMobile] = useState(false);
-  const [expandedRows, setExpandedRows] = useState<Set<string>>(new Set());
-
-  useEffect(() => {
-    const mq = window.matchMedia('(max-width: 600px)');
-    const handler = (e: MediaQueryListEvent | MediaQueryList) => {
-      setIsMobile(e.matches);
-    };
-    handler(mq);
-
-    if (mq.addEventListener) {
-      mq.addEventListener('change', handler as any);
-      return () => mq.removeEventListener('change', handler as any);
-    } else {
-      mq.addListener(handler as any);
-      return () => mq.removeListener(handler as any);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (isMobile) {
-      setExpandedRows(new Set(experiences.map(e => e.id)));
-    } else {
-      setExpandedRows(new Set());
-    }
-  }, [isMobile]);
-
-  const toggleRow = (id: string) => {
-    setExpandedRows(prev => {
-      const newSet = new Set(prev);
-      if (newSet.has(id)) {
-        newSet.delete(id);
-      } else {
-        newSet.add(id);
-      }
-      return newSet;
-    });
-  };
-
   return (
     <section id="work" style={{ paddingTop: 0 }}>
       <div className="sql-editor">
@@ -82,7 +43,7 @@ const Experience = () => {
           <tbody>
             {experiences.map((exp: ExperienceType) => (
               <Fragment key={exp.id}>
-                <tr className={`main-row ${expandedRows.has(exp.id) ? 'open' : ''}`} onClick={() => toggleRow(exp.id)} style={{ cursor: 'pointer' }}>
+                <tr className="main-row open">
                   <td className="td-key">
                     <span className={`key-badge ${exp.key === 'PK' ? 'pk' : 'fk'}`}>{exp.key}</span>
                   </td>
@@ -94,14 +55,11 @@ const Experience = () => {
                   <td>{exp.type}</td>
                   <td className="td-location">
                     <span>{exp.location}</span>
-                    <button className="expand-btn" aria-label="Expand details">
-                      <span className="chevron">▾</span>
-                    </button>
                   </td>
                 </tr>
                 <tr key={`detail-${exp.id}`} className="detail-row">
                   <td colSpan={5}>
-                    <div className={`detail-inner ${expandedRows.has(exp.id) ? 'open' : ''}`}>
+                    <div className="detail-inner open">
                       <div className="about-box">
                         <div className="company-logo">
                           <img src={exp.logo} alt={`${exp.company} Logo`} />
@@ -122,10 +80,6 @@ const Experience = () => {
             ))}
           </tbody>
         </table>
-      </div>
-
-      <div className="click-hint">
-        <span>Click any row to expand details, more to come soon!</span>
       </div>
     </section>
   );
