@@ -251,7 +251,7 @@ footer{text-align:center;padding:40px 52px;font-size:12px;font-weight:300;color:
         </thead>
         <tbody>
           <!-- CC&L -->
-          <tr class="main-row" id="r1">
+          <tr class="main-row" id="r1" role="button" tabindex="0">
             <td class="td-key"><span class="key-badge pk">PK</span></td>
             <td>
               <span class="company-name">Connor, Clark & Lunn</span>
@@ -282,7 +282,7 @@ footer{text-align:center;padding:40px 52px;font-size:12px;font-weight:300;color:
           </tr>
 
           <!-- RBC GAM -->
-          <tr class="main-row" id="r2">
+          <tr class="main-row" id="r2" role="button" tabindex="0">
             <td class="td-key"><span class="key-badge fk">FK</span></td>
             <td>
               <span class="company-name">RBC Global Asset Management</span>
@@ -313,7 +313,7 @@ footer{text-align:center;padding:40px 52px;font-size:12px;font-weight:300;color:
           </tr>
 
           <!-- BEEDIE -->
-          <tr class="main-row" id="r3">
+          <tr class="main-row" id="r3" role="button" tabindex="0">
             <td class="td-key"><span class="key-badge fk">FK</span></td>
             <td>
               <span class="company-name">Beedie School of Business</span>
@@ -374,6 +374,7 @@ footer{text-align:center;padding:40px 52px;font-size:12px;font-weight:300;color:
   const tbody = document.querySelector('tbody');
   if (!tbody) return;
 
+  // Handle pointer/touch/click events
   if (window.PointerEvent) {
     tbody.addEventListener('pointerup', function(e) {
       const tr = e.target.closest('.main-row');
@@ -389,6 +390,15 @@ footer{text-align:center;padding:40px 52px;font-size:12px;font-weight:300;color:
       if (tr) activateRow(tr);
     }, false);
   }
+
+  // Handle keyboard activation (Enter/Space) for accessibility
+  tbody.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      const tr = e.target.closest('.main-row');
+      if (tr) activateRow(tr);
+    }
+  }, false);
 })();
 </script>
 
