@@ -359,25 +359,46 @@ footer{text-align:center;padding:40px 52px;font-size:12px;font-weight:300;color:
       if (r.id !== exceptRowId) {
         r.classList.remove('open');
         const otherDetail = document.getElementById('di' + r.id.replace('r',''));
-        if (otherDetail) otherDetail.classList.remove('open');
+        if (otherDetail) {
+          otherDetail.classList.remove('open');
+          otherDetail.style.maxHeight = '0px';
+        }
       }
     });
   }
 
-  // Simple click handler for expand buttons
+  // Click handler for expand buttons
   document.querySelectorAll('.expand-btn').forEach(btn => {
     btn.addEventListener('click', function(e) {
+      e.preventDefault();
       e.stopPropagation();
+      
       const rowId = this.getAttribute('data-row');
       const row = document.getElementById(rowId);
       if (!row) return;
       
       const idx = rowId.replace('r','');
       const detail = document.getElementById('di' + idx);
+      if (!detail) return;
+      
+      const isOpen = row.classList.contains('open');
       
       closeOthers(rowId);
-      row.classList.toggle('open');
-      if (detail) detail.classList.toggle('open');
+      
+      if (isOpen) {
+        // Closing
+        row.classList.remove('open');
+        detail.classList.remove('open');
+        detail.style.maxHeight = '0px';
+      } else {
+        // Opening - use scrollHeight to get actual content height
+        row.classList.add('open');
+        detail.classList.add('open');
+        // Force reflow and calculate height
+        setTimeout(() => {
+          detail.style.maxHeight = detail.scrollHeight + 'px';
+        }, 10);
+      }
     });
   });
 })();
