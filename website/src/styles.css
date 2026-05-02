@@ -194,6 +194,15 @@ footer{text-align:center;padding:40px 52px;font-size:12px;font-weight:300;color:
   }
 }
 
+@media (max-width: 600px) {
+  header { padding: 12px 20px; }
+  section { padding: 20px 20px; }
+  .exp-wrap { margin: 0 -10px; }
+  table { table-layout: auto !important; font-size: 12px; }
+  tbody tr.main-row td { padding: 12px 12px; }
+  .about-box { padding: 16px 12px; }
+}
+
 @media (max-width: 480px) {
   /* Hide Key column on very small phones to prevent horizontal scroll */
   thead th:nth-child(1), tbody td:nth-child(1), col:nth-child(1) {

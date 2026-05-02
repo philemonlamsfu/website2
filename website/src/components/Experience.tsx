@@ -8,7 +8,7 @@ const Experience = () => {
 
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
+      setIsMobile(window.innerWidth < 600);
     };
     checkMobile();
     window.addEventListener('resize', checkMobile);
