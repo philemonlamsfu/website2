@@ -210,6 +210,15 @@ footer{text-align:center;padding:40px 52px;font-size:12px;font-weight:300;color:
   }
 }
 
+/* Ensure detail rows are displayed and use full width on small screens */
+@media (max-width: 600px) {
+  tr.detail-row { display: table-row !important; }
+  tr.detail-row td { display: table-cell !important; padding: 12px 12px; }
+  .about-box { padding-left: 12px !important; padding-right: 12px !important; }
+  .company-logo { width: 40px; height: 40px; }
+  .about-content { max-width: none; }
+}
+
 @media (max-width: 480px) {
   /* Hide Key column on very small phones to prevent horizontal scroll */
   thead th:nth-child(1), tbody td:nth-child(1), col:nth-child(1) {
