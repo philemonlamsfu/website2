@@ -62,7 +62,6 @@ const Experience = () => {
             <col className="c-role" />
             <col className="c-type" />
             <col className="c-loc" />
-            <col className="c-expand" />
           </colgroup>
           <thead>
             <tr>
@@ -71,7 +70,6 @@ const Experience = () => {
               <th>role</th>
               <th>type</th>
               <th>location</th>
-              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -87,8 +85,8 @@ const Experience = () => {
                   </td>
                   <td className="role-text">{exp.role}</td>
                   <td>{exp.type}</td>
-                  <td>{exp.location}</td>
-                  <td>
+                  <td className="td-location">
+                    <span>{exp.location}</span>
                     <button className="expand-btn" aria-label="Expand details">
                       <span className="chevron">▾</span>
                     </button>

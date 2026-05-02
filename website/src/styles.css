@@ -93,7 +93,6 @@ col.c-company { width: 240px; }
 col.c-role { width: 220px; }
 col.c-type { width: 140px; }
 col.c-loc { width: auto; }
-col.c-expand { width: 50px; }
 
 thead tr{ background:rgba(0,0,0,0.01); border-bottom:1px solid var(--border); }
 thead th{
@@ -117,6 +116,12 @@ tbody tr.main-row td{
   vertical-align:middle;
   border-right:1px solid rgba(0,0,0,0.06);
   font-size:13px;font-weight:300;color:#555;
+}
+.td-location{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
 }
 tbody tr.main-row td:last-child{border-right:none}
 
