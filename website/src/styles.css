@@ -227,12 +227,4 @@ footer{text-align:center;padding:40px 52px;font-size:12px;font-weight:300;color:
   tbody tr.main-row td { padding: 12px 10px; border-right: none; }
 }
 
-/* Mobile toggle control */
-.mobile-toggle{display:flex;justify-content:flex-end;padding:8px 18px;background:transparent}
-.mobile-toggle-btn{background:#111;color:#fff;border-radius:8px;padding:8px 12px;border:none;font-weight:600;cursor:pointer}
-.mobile-toggle-btn:active{transform:translateY(1px)}
 
-@media (max-width: 600px) {
-  .mobile-toggle{padding:8px 12px}
-  .mobile-toggle-btn{width:160px;text-align:center}
-}

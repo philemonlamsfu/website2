@@ -33,6 +33,7 @@ const Experience = () => {
   }, [isMobile]);
 
   const toggleRow = (id: string) => {
+    if (isMobile) return;
     setExpandedRows(prev => {
       const newSet = new Set(prev);
       if (newSet.has(id)) {
@@ -44,15 +45,6 @@ const Experience = () => {
     });
   };
 
-  const toggleAll = () => {
-    setExpandedRows(prev => {
-      if (prev.size === experiences.length) {
-        return new Set();
-      }
-      return new Set(experiences.map(e => e.id));
-    });
-  };
-
   return (
     <section id="work" style={{ paddingTop: 0 }}>
       <div className="sql-editor">
@@ -61,13 +53,6 @@ const Experience = () => {
       </div>
 
       <div className="exp-wrap">
-        {isMobile && (
-          <div className="mobile-toggle">
-            <button onClick={toggleAll} className="mobile-toggle-btn">
-              {expandedRows.size === experiences.length ? 'Hide details' : 'Show details'}
-            </button>
-          </div>
-        )}
         <div className="exp-table-header">
           <div className="exp-table-name">
             <svg viewBox="0 0 16 16">
