@@ -62,8 +62,8 @@ const Experience = () => {
                   <td className="role-text">{exp.role}</td>
                   <td>{exp.type}</td>
                   <td>{exp.location}</td>
-                  <td>
-                    <button className="expand-btn" onClick={() => toggleRow(exp.id)} aria-label="Expand details">
+                  <td onClick={() => toggleRow(exp.id)} style={{ cursor: 'pointer' }}>
+                    <button className="expand-btn" aria-label="Expand details">
                       <span className="chevron">▾</span>
                     </button>
                   </td>
