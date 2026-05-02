@@ -241,3 +241,34 @@ footer{text-align:center;padding:40px 52px;font-size:12px;font-weight:300;color:
   border-top: 1px solid var(--border);
   background: rgba(0,0,0,0.012);
 }
+.mobile-list { width: 100%; }
+
+.mobile-list-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 18px;
+  font-size: 11px;
+  font-weight: 500;
+  color: #bbb;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  background: rgba(0,0,0,0.01);
+  border-bottom: 1px solid var(--border);
+}
+
+.mobile-entry {
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.mobile-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 18px;
+  gap: 12px;
+  background: rgba(0,0,0,0.025);
+}
+
+.mobile-detail {
+  border-top: 1px solid var(--border);
+  background: rgba(0,0,0,0.012);
+}

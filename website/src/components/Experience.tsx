@@ -30,43 +30,77 @@ const Experience = () => {
           </div>
           <span className="exp-row-count">{experiences.length} rows</span>
         </div>
-        <table>
-          <colgroup>
-            <col className="c-key" />
-            <col className="c-company" />
-            <col className="c-role" />
-            <col className="c-type" />
-            <col className="c-loc" />
-          </colgroup>
-          <thead>
-            <tr>
-              <th>key</th>
-              <th>company</th>
-              <th>role</th>
-              <th>type</th>
-              <th>location</th>
-            </tr>
-          </thead>
-          <tbody>
+
+        {isMobile ? (
+          /* Mobile: simple stacked cards, no table */
+          <div className="mobile-list">
+            <div className="mobile-list-header">
+              <span>company</span>
+              <span>role</span>
+            </div>
             {experiences.map((exp: ExperienceType) => (
-              <Fragment key={exp.id}>
-                <tr className="main-row open">
-                  <td className="td-key">
-                    <span className={`key-badge ${exp.key === 'PK' ? 'pk' : 'fk'}`}>{exp.key}</span>
-                  </td>
-                  <td>
+              <div key={exp.id} className="mobile-entry">
+                <div className="mobile-row">
+                  <div>
                     <span className="company-name">{exp.company}</span>
                     <span className="company-period">{exp.period}</span>
-                  </td>
-                  <td className="role-text">{exp.role}</td>
-                  <td>{exp.type}</td>
-                  <td className="td-location">
-                    <span>{exp.location}</span>
-                  </td>
-                </tr>
-
-                {/* Desktop: detail inside table */}
-                {!isMobile && (
+                  </div>
+                  <div className="role-text">{exp.role}</div>
+                </div>
+                <div className="mobile-detail">
+                  <div className="about-box">
+                    <div className="company-logo">
+                      <img src={exp.logo} alt={`${exp.company} Logo`} />
+                    </div>
+                    <div className="about-content">
+                      <div className="about-label">{exp.details.aboutLabel}</div>
+                      <p className="about-text">{exp.details.about}</p>
+                      <div className="about-label">Role Overview</div>
+                      <p className="about-text">{exp.details.roleOverview}</p>
+                      <div className="about-label">Software & Tools</div>
+                      <p className="stack-badge">{exp.details.tools}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          /* Desktop: full table */
+          <table>
+            <colgroup>
+              <col className="c-key" />
+              <col className="c-company" />
+              <col className="c-role" />
+              <col className="c-type" />
+              <col className="c-loc" />
+            </colgroup>
+            <thead>
+              <tr>
+                <th>key</th>
+                <th>company</th>
+                <th>role</th>
+                <th>type</th>
+                <th>location</th>
+              </tr>
+            </thead>
+            <tbody>
+              {experiences.map((exp: ExperienceType) => (
+                <Fragment key={exp.id}>
+                  <tr className="main-row open">
+                    <td className="td-key">
+                      <span className={`key-badge ${exp.key === 'PK' ? 'pk' : 'fk'}`}>{exp.key}</span>
+                    </td>
+                    <td>
+                      <span className="company-name">{exp.company}</span>
+                      <span className="company-period">{exp.period}</span>
+                    </td>
+                    <td className="role-text">{exp.role}</td>
+                    <td>{exp.type}</td>
+                    <td className="td-location">
+                      <span>{exp.location}</span>
+                    </td>
+                  </tr>
                   <tr key={`detail-${exp.id}`} className="detail-row">
                     <td colSpan={5}>
                       <div className="detail-inner open">
@@ -86,30 +120,11 @@ const Experience = () => {
                       </div>
                     </td>
                   </tr>
-                )}
-              </Fragment>
-            ))}
-          </tbody>
-        </table>
-
-        {/* Mobile: detail outside table */}
-        {isMobile && experiences.map((exp: ExperienceType) => (
-          <div key={`mobile-detail-${exp.id}`} className="mobile-detail">
-            <div className="about-box">
-              <div className="company-logo">
-                <img src={exp.logo} alt={`${exp.company} Logo`} />
-              </div>
-              <div className="about-content">
-                <div className="about-label">{exp.details.aboutLabel}</div>
-                <p className="about-text">{exp.details.about}</p>
-                <div className="about-label">Role Overview</div>
-                <p className="about-text">{exp.details.roleOverview}</p>
-                <div className="about-label">Software & Tools</div>
-                <p className="stack-badge">{exp.details.tools}</p>
-              </div>
-            </div>
-          </div>
-        ))}
+                </Fragment>
+              ))}
+            </tbody>
+          </table>
+        )}
       </div>
     </section>
   );
