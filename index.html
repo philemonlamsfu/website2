@@ -1,3 +1,128 @@
+flow
+flowbugs
+
+_xxe_ — 2026-02-20 5:09 PM
+🚀 🚀 🚀 🚀
+flow — 2026-02-20 5:09 PM
+⁉️⁉️⁉️⁉️
+flow — 2026-02-20 8:13 PM
+yo if ur not on in 10 min max ur ded to me
+_xxe_ — 2026-02-20 8:13 PM
+...
+
+_xxe_ — 2026-02-26 9:05 PM
+https://www.amazon.ca/Moondrop-CHU-II-Performance-Interchangeable/dp/B0CB8HHS8V
+MOONDROP CHU II High Performance Dynamic Driver IEMs Interchangeabl...
+Spec:
+Model: CHU 2 high-performance dynamic driver in-ear headphone
+Cavity material: ZN alloy
+Driver : 10mm high-performance dynamic driver
+Diaphragm : Aluminum-manesium alloy composite diaphragm
+Headphone Jack: 0.78mm-2pin
+Plug : 3.5mm single-ended
+Frequency Response: 15Hz-38KHz
+Effectiv...
+flow — 2026-03-31 7:27 PM
+J POI N DLSAPMJ KSA
+flow — 2026-04-03 9:14 PM
+am i crazy or is this a good deal 
+im trying to build second setup
+with 240 hz monitor
+https://www.dell.com/en-ca/shop/cty/apd/210-BTTJ
+Dell
+Dell 24 Inch 240Hz IPS Panel Monitor | Dell Canada
+Discover the Dell 24 240Hz SE2426HG: Fast IPS monitor with AMD free sync premium, easy connectivity & vibrant display. Shop Now!
+
+idk much about monitors but i feel like $140 cad for 240 hz is insane
+_xxe_ — 2026-04-03 9:15 PM
+Ye that is pre good
+I’d say it’s fine just double check Reddit
+Cuz certain models might be better/worse
+But price wise it’s good for sure
+Mr lamuel
+flow — 2026-04-03 9:16 PM
+right
+_xxe_ — 2026-04-08 8:07 PM
+https://andrewlai.ca/
+_xxe_ — 2026-04-14 7:58 PM
+wanna paly a val
+flow — 2026-04-14 7:58 PM
+I can’t tonight 🙁
+_xxe_ — 2026-04-14 7:58 PM
+its ok.
+fly high sir.
+flow — 2026-04-14 7:59 PM
+
+_xxe_ — 2026-04-14 7:59 PM
+0_o
+_xxe_ — 2026-04-20 8:24 PM
+its not u.
+fuck avery.
+that g didnt comm or anything.
+flow — 2026-04-20 8:24 PM
+im very scared
+_xxe_ — 2026-04-20 8:24 PM
+FUCK T HAT GUY
+flow — 2026-04-20 8:24 PM
+i know.
+_xxe_ — 2026-04-20 8:24 PM
+FUCK THAT GUY
+flow — 2026-04-20 8:24 PM
+it scared me.
+his attitude
+its not ok.
+_xxe_ — 2026-04-20 8:24 PM
+flow — 2026-04-20 8:24 PM
+have fun in cs with him.
+_xxe_ — 2026-04-20 8:26 PM
+i am scared.
+i might get banned today.
+flow — 2026-04-20 8:27 PM
+let that anger out of u
+flow — 2026-04-23 8:45 PM
+u wanna play
+_xxe_ — 2026-04-23 8:45 PM
+Ye Val broke my pc
+So gimme a sec
+It’s stuck
+Turning on
+flow — 8:52 PM
+hallo
+can i get ur coding expertise
+i have a website that works as intended on pc
+but mobile it doesnt do what i want it to
+_xxe_ — 8:52 PM
+Yea I can take a look
+Wanna get in vc
+flow — 8:52 PM
+sure let me get airpod
+im in
+https://website-two-self-66.vercel.app/
+_xxe_ — 8:54 PM
+Kk one sec.
+flow — 9:17 PM
+https://website2-pied-gamma.vercel.app/
+_xxe_ — 9:20 PM
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Philemon Lam</title>
+
+message.txt
+17 KB
+_xxe_ — 9:28 PM
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Philemon Lam</title>
+
+message.txt
+16 KB
+﻿
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -371,34 +496,28 @@ footer{text-align:center;padding:40px 52px;font-size:12px;font-weight:300;color:
     if (detail) detail.classList.toggle('open');
   }
 
-  const tbody = document.querySelector('tbody');
-  if (!tbody) return;
+  // Attach listeners directly to each row
+  document.querySelectorAll('.main-row').forEach(row => {
+    let lastTouchTime = 0;
 
-  // Handle pointer/touch/click events
-  if (window.PointerEvent) {
-    tbody.addEventListener('pointerup', function(e) {
-      const tr = e.target.closest('.main-row');
-      if (tr) activateRow(tr);
+    // Primary click handler for desktop and mobile
+    row.addEventListener('click', function(e) {
+      activateRow(row);
     }, false);
-  } else {
-    tbody.addEventListener('touchend', function(e) {
-      const tr = e.target.closest('.main-row');
-      if (tr) activateRow(tr);
-    }, false);
-    tbody.addEventListener('click', function(e) {
-      const tr = e.target.closest('.main-row');
-      if (tr) activateRow(tr);
-    }, false);
-  }
 
-  // Handle keyboard activation (Enter/Space) for accessibility
-  tbody.addEventListener('keydown', function(e) {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      const tr = e.target.closest('.main-row');
-      if (tr) activateRow(tr);
-    }
-  }, false);
+    // Touch handler - prevent double-firing with click
+    row.addEventListener('touchend', function(e) {
+      lastTouchTime = Date.now();
+    }, false);
+
+    // Keyboard support
+    row.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        activateRow(row);
+      }
+    }, false);
+  });
 })();
 </script>
 
