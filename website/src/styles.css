@@ -201,6 +201,13 @@ footer{text-align:center;padding:40px 52px;font-size:12px;font-weight:300;color:
   table { table-layout: auto !important; font-size: 12px; }
   tbody tr.main-row td { padding: 12px 12px; }
   .about-box { padding: 16px 12px; }
+
+  /* On very small screens, show expanded content fully */
+  .detail-inner {
+    max-height: none !important;
+    overflow: visible !important;
+    transition: none !important;
+  }
 }
 
 @media (max-width: 480px) {
