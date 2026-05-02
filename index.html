@@ -101,6 +101,7 @@ col.c-company { width: 240px; }
 col.c-role { width: 220px; }
 col.c-type { width: 140px; }
 col.c-loc { width: auto; }
+col.c-expand { width: 50px; }
 
 thead tr{ background:rgba(0,0,0,0.01); border-bottom:1px solid var(--border); }
 thead th{
@@ -181,7 +182,7 @@ footer{text-align:center;padding:40px 52px;font-size:12px;font-weight:300;color:
   /* Allow table to resize to screen */
   table { table-layout: auto !important; }
 
-  /* Hide Type & Location columns fully */
+  /* Hide Type & Location columns */
   thead th:nth-child(4), thead th:nth-child(5),
   tbody td:nth-child(4), tbody td:nth-child(5),
   col:nth-child(4), col:nth-child(5) {
@@ -242,7 +243,7 @@ footer{text-align:center;padding:40px 52px;font-size:12px;font-weight:300;color:
       </div>
 
       <table>
-        <colgroup><col class="c-key"><col class="c-company"><col class="c-role"><col class="c-type"><col class="c-loc"></colgroup>
+        <colgroup><col class="c-key"><col class="c-company"><col class="c-role"><col class="c-type"><col class="c-loc"><col class="c-expand"></colgroup>
         <thead>
           <tr>
             <th>key</th>
@@ -250,6 +251,7 @@ footer{text-align:center;padding:40px 52px;font-size:12px;font-weight:300;color:
             <th>role</th>
             <th>type</th>
             <th>location</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -262,12 +264,11 @@ footer{text-align:center;padding:40px 52px;font-size:12px;font-weight:300;color:
             </td>
             <td class="role-text">Intern, Investment Data Architecture</td>
             <td>Internship</td>
-            <td>
-              <div class="loc-wrap"><span>Vancouver, Hybrid</span> <button class="expand-btn" data-row="r1" aria-label="Expand details"><span class="chevron">▾</span></button></div>
-            </td>
+            <td>Vancouver, Hybrid</td>
+            <td><button class="expand-btn" data-row="r1" aria-label="Expand details"><span class="chevron">▾</span></button></td>
           </tr>
           <tr class="detail-row" id="d1">
-            <td colspan="5">
+            <td colspan="6">
               <div class="detail-inner" id="di1">
                 <div class="about-box">
                     <div class="company-logo"><img src="CCL.jpeg" alt="CCL Logo"></div>
@@ -293,12 +294,11 @@ footer{text-align:center;padding:40px 52px;font-size:12px;font-weight:300;color:
             </td>
             <td class="role-text">Data Analyst Co-op</td>
             <td>Co-op</td>
-            <td>
-              <div class="loc-wrap"><span>Vancouver, Hybrid</span> <button class="expand-btn" data-row="r2" aria-label="Expand details"><span class="chevron">▾</span></button></div>
-            </td>
+            <td>Vancouver, Hybrid</td>
+            <td><button class="expand-btn" data-row="r2" aria-label="Expand details"><span class="chevron">▾</span></button></td>
           </tr>
           <tr class="detail-row" id="d2">
-            <td colspan="5">
+            <td colspan="6">
               <div class="detail-inner" id="di2">
                 <div class="about-box">
                     <div class="company-logo"><img src="RBC.jpg" alt="RBC Logo"></div>
@@ -324,12 +324,11 @@ footer{text-align:center;padding:40px 52px;font-size:12px;font-weight:300;color:
             </td>
             <td class="role-text">Teaching Assistant</td>
             <td>Contract</td>
-            <td>
-              <div class="loc-wrap"><span>Burnaby, On-site</span> <button class="expand-btn" data-row="r3" aria-label="Expand details"><span class="chevron">▾</span></button></div>
-            </td>
+            <td>Burnaby, On-site</td>
+            <td><button class="expand-btn" data-row="r3" aria-label="Expand details"><span class="chevron">▾</span></button></td>
           </tr>
           <tr class="detail-row" id="d3">
-            <td colspan="5">
+            <td colspan="6">
               <div class="detail-inner" id="di3">
                 <div class="about-box">
                     <div class="company-logo"><img src="beedie.png" alt="Beedie Logo"></div>
