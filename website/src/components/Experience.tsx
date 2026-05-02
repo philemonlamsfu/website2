@@ -7,11 +7,12 @@ const Experience = () => {
   const [expandedRows, setExpandedRows] = useState<Set<string>>(new Set());
 
   useEffect(() => {
-    // Use matchMedia plus mobile UA detection so phones stay in mobile view reliably.
-    const mobileUA = /iPhone|Android.*Mobile|Mobile|iPad|iPod/.test(navigator.userAgent);
+    const ua = navigator.userAgent || '';
+    const mobileUA = /Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Opera Mini|CriOS|FxiOS/i.test(ua);
+    const safariTouch = /Safari/i.test(ua) && navigator.maxTouchPoints > 1;
     const mq = window.matchMedia('(max-width: 600px)');
     const handler = (e: MediaQueryListEvent | MediaQueryList) => {
-      setIsMobile(e.matches || mobileUA);
+      setIsMobile(e.matches || mobileUA || safariTouch);
     };
     handler(mq);
     if (mq.addEventListener) {
