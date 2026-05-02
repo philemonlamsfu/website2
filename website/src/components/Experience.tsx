@@ -7,18 +7,17 @@ const Experience = () => {
   const [expandedRows, setExpandedRows] = useState<Set<string>>(new Set());
 
   useEffect(() => {
-    // Use matchMedia for more reliable detection and to listen to changes
+    // Use matchMedia plus mobile UA detection so phones stay in mobile view reliably.
+    const mobileUA = /iPhone|Android.*Mobile|Mobile|iPad|iPod/.test(navigator.userAgent);
     const mq = window.matchMedia('(max-width: 600px)');
     const handler = (e: MediaQueryListEvent | MediaQueryList) => {
-      setIsMobile(e.matches);
+      setIsMobile(e.matches || mobileUA);
     };
-    // Set initial
     handler(mq);
     if (mq.addEventListener) {
       mq.addEventListener('change', handler as any);
       return () => mq.removeEventListener('change', handler as any);
     } else {
-      // Fallback for older browsers
       mq.addListener(handler as any);
       return () => mq.removeListener(handler as any);
     }
