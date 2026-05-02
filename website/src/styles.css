@@ -118,10 +118,8 @@ tbody tr.main-row td{
   font-size:13px;font-weight:300;color:#555;
 }
 .td-location{
-  display:block;
-  align-items:initial;
-  justify-content:initial;
-  gap:0;
+  display: table-cell;
+  vertical-align: middle;
 }
 tbody tr.main-row td:last-child{border-right:none}
 
