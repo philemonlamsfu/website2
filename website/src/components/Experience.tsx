@@ -1,12 +1,38 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { experiences } from '../data';
 import type { Experience as ExperienceType } from '../types';
 
 const Experience = () => {
-  const [openRow, setOpenRow] = useState<string | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
+  const [expandedRows, setExpandedRows] = useState<Set<string>>(new Set());
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  useEffect(() => {
+    if (isMobile) {
+      setExpandedRows(new Set(experiences.map(e => e.id)));
+    } else {
+      setExpandedRows(new Set());
+    }
+  }, [isMobile]);
 
   const toggleRow = (id: string) => {
-    setOpenRow(openRow === id ? null : id);
+    setExpandedRows(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(id)) {
+        newSet.delete(id);
+      } else {
+        newSet.add(id);
+      }
+      return newSet;
+    });
   };
 
   return (
@@ -51,7 +77,7 @@ const Experience = () => {
           <tbody>
             {experiences.map((exp: ExperienceType) => (
               <>
-                <tr className={`main-row ${openRow === exp.id ? 'open' : ''}`} onClick={() => toggleRow(exp.id)} style={{ cursor: 'pointer' }}>
+                <tr className={`main-row ${expandedRows.has(exp.id) ? 'open' : ''}`} onClick={() => toggleRow(exp.id)} style={{ cursor: 'pointer' }}>
                   <td className="td-key">
                     <span className={`key-badge ${exp.key === 'PK' ? 'pk' : 'fk'}`}>{exp.key}</span>
                   </td>
@@ -70,7 +96,7 @@ const Experience = () => {
                 </tr>
                 <tr className="detail-row">
                   <td colSpan={6}>
-                    <div className={`detail-inner ${openRow === exp.id ? 'open' : ''}`}>
+                    <div className={`detail-inner ${expandedRows.has(exp.id) ? 'open' : ''}`}>
                       <div className="about-box">
                         <div className="company-logo">
                           <img src={exp.logo} alt={`${exp.company} Logo`} />
