@@ -51,7 +51,7 @@ const Experience = () => {
           <tbody>
             {experiences.map((exp: ExperienceType) => (
               <>
-                <tr className={`main-row ${openRow === exp.id ? 'open' : ''}`}>
+                <tr className={`main-row ${openRow === exp.id ? 'open' : ''}`} onClick={() => toggleRow(exp.id)} style={{ cursor: 'pointer' }}>
                   <td className="td-key">
                     <span className={`key-badge ${exp.key === 'PK' ? 'pk' : 'fk'}`}>{exp.key}</span>
                   </td>
@@ -62,7 +62,7 @@ const Experience = () => {
                   <td className="role-text">{exp.role}</td>
                   <td>{exp.type}</td>
                   <td>{exp.location}</td>
-                  <td onClick={() => toggleRow(exp.id)} style={{ cursor: 'pointer' }}>
+                  <td>
                     <button className="expand-btn" aria-label="Expand details">
                       <span className="chevron">▾</span>
                     </button>
