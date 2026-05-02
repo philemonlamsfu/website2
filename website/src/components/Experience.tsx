@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { Fragment, useState, useEffect } from 'react';
 import { experiences } from '../data';
 import type { Experience as ExperienceType } from '../types';
 
@@ -7,14 +7,12 @@ const Experience = () => {
   const [expandedRows, setExpandedRows] = useState<Set<string>>(new Set());
 
   useEffect(() => {
-    const ua = navigator.userAgent || '';
-    const mobileUA = /Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Opera Mini|CriOS|FxiOS/i.test(ua);
-    const safariTouch = /Safari/i.test(ua) && navigator.maxTouchPoints > 1;
     const mq = window.matchMedia('(max-width: 600px)');
     const handler = (e: MediaQueryListEvent | MediaQueryList) => {
-      setIsMobile(e.matches || mobileUA || safariTouch);
+      setIsMobile(e.matches);
     };
     handler(mq);
+
     if (mq.addEventListener) {
       mq.addEventListener('change', handler as any);
       return () => mq.removeEventListener('change', handler as any);
@@ -33,7 +31,6 @@ const Experience = () => {
   }, [isMobile]);
 
   const toggleRow = (id: string) => {
-    if (isMobile) return;
     setExpandedRows(prev => {
       const newSet = new Set(prev);
       if (newSet.has(id)) {
@@ -84,8 +81,8 @@ const Experience = () => {
           </thead>
           <tbody>
             {experiences.map((exp: ExperienceType) => (
-              <>
-                <tr key={exp.id} className={`main-row ${expandedRows.has(exp.id) ? 'open' : ''}`} onClick={() => toggleRow(exp.id)} style={{ cursor: 'pointer' }}>
+              <Fragment key={exp.id}>
+                <tr className={`main-row ${expandedRows.has(exp.id) ? 'open' : ''}`} onClick={() => toggleRow(exp.id)} style={{ cursor: 'pointer' }}>
                   <td className="td-key">
                     <span className={`key-badge ${exp.key === 'PK' ? 'pk' : 'fk'}`}>{exp.key}</span>
                   </td>
@@ -121,7 +118,7 @@ const Experience = () => {
                     </div>
                   </td>
                 </tr>
-              </>
+              </Fragment>
             ))}
           </tbody>
         </table>
