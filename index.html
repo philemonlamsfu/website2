@@ -112,9 +112,12 @@ thead th{
 }
 thead th:last-child{border-right:none}
 
-tbody tr.main-row{ border-bottom:1px solid rgba(0,0,0,0.05); cursor:pointer; transition:background .15s; }
-tbody tr.main-row:hover{background:rgba(0,0,0,0.02)}
+tbody tr.main-row{ border-bottom:1px solid rgba(0,0,0,0.05); }
 tbody tr.main-row.open{background:rgba(0,0,0,0.025)}
+
+.expand-btn{ background:none; border:none; cursor:pointer; padding:4px 8px; display:flex; align-items:center; justify-content:center; color:#ccc; transition:color .2s ease; }
+.expand-btn:hover{ color:#888; }
+.expand-btn:active{ color:#555; }
 
 tbody tr.main-row td{
   padding:16px 18px;
@@ -251,7 +254,7 @@ footer{text-align:center;padding:40px 52px;font-size:12px;font-weight:300;color:
         </thead>
         <tbody>
           <!-- CC&L -->
-          <tr class="main-row" id="r1" role="button" tabindex="0">
+          <tr class="main-row" id="r1">
             <td class="td-key"><span class="key-badge pk">PK</span></td>
             <td>
               <span class="company-name">Connor, Clark & Lunn</span>
@@ -260,7 +263,7 @@ footer{text-align:center;padding:40px 52px;font-size:12px;font-weight:300;color:
             <td class="role-text">Intern, Investment Data Architecture</td>
             <td>Internship</td>
             <td>
-              <div class="loc-wrap"><span>Vancouver, Hybrid</span> <span class="chevron">▾</span></div>
+              <div class="loc-wrap"><span>Vancouver, Hybrid</span> <button class="expand-btn" data-row="r1" aria-label="Expand details"><span class="chevron">▾</span></button></div>
             </td>
           </tr>
           <tr class="detail-row" id="d1">
@@ -282,7 +285,7 @@ footer{text-align:center;padding:40px 52px;font-size:12px;font-weight:300;color:
           </tr>
 
           <!-- RBC GAM -->
-          <tr class="main-row" id="r2" role="button" tabindex="0">
+          <tr class="main-row" id="r2">
             <td class="td-key"><span class="key-badge fk">FK</span></td>
             <td>
               <span class="company-name">RBC Global Asset Management</span>
@@ -291,7 +294,7 @@ footer{text-align:center;padding:40px 52px;font-size:12px;font-weight:300;color:
             <td class="role-text">Data Analyst Co-op</td>
             <td>Co-op</td>
             <td>
-              <div class="loc-wrap"><span>Vancouver, Hybrid</span> <span class="chevron">▾</span></div>
+              <div class="loc-wrap"><span>Vancouver, Hybrid</span> <button class="expand-btn" data-row="r2" aria-label="Expand details"><span class="chevron">▾</span></button></div>
             </td>
           </tr>
           <tr class="detail-row" id="d2">
@@ -313,7 +316,7 @@ footer{text-align:center;padding:40px 52px;font-size:12px;font-weight:300;color:
           </tr>
 
           <!-- BEEDIE -->
-          <tr class="main-row" id="r3" role="button" tabindex="0">
+          <tr class="main-row" id="r3">
             <td class="td-key"><span class="key-badge fk">FK</span></td>
             <td>
               <span class="company-name">Beedie School of Business</span>
@@ -322,7 +325,7 @@ footer{text-align:center;padding:40px 52px;font-size:12px;font-weight:300;color:
             <td class="role-text">Teaching Assistant</td>
             <td>Contract</td>
             <td>
-              <div class="loc-wrap"><span>Burnaby, On-site</span> <span class="chevron">▾</span></div>
+              <div class="loc-wrap"><span>Burnaby, On-site</span> <button class="expand-btn" data-row="r3" aria-label="Expand details"><span class="chevron">▾</span></button></div>
             </td>
           </tr>
           <tr class="detail-row" id="d3">
@@ -352,9 +355,9 @@ footer{text-align:center;padding:40px 52px;font-size:12px;font-weight:300;color:
 
 <script>
 (function(){
-  function closeOthers(exceptRow) {
+  function closeOthers(exceptRowId) {
     document.querySelectorAll('.main-row.open').forEach(r => {
-      if (r !== exceptRow) {
+      if (r.id !== exceptRowId) {
         r.classList.remove('open');
         const otherDetail = document.getElementById('di' + r.id.replace('r',''));
         if (otherDetail) otherDetail.classList.remove('open');
@@ -362,36 +365,21 @@ footer{text-align:center;padding:40px 52px;font-size:12px;font-weight:300;color:
     });
   }
 
-  function activateRow(row) {
-    if (!row) return;
-    const idx = row.id.replace('r','');
-    const detail = document.getElementById('di' + idx);
-    closeOthers(row);
-    row.classList.toggle('open');
-    if (detail) detail.classList.toggle('open');
-  }
-
-  // Attach listeners directly to each row
-  document.querySelectorAll('.main-row').forEach(row => {
-    let lastTouchTime = 0;
-
-    // Primary click handler for desktop and mobile
-    row.addEventListener('click', function(e) {
-      activateRow(row);
-    }, false);
-
-    // Touch handler - prevent double-firing with click
-    row.addEventListener('touchend', function(e) {
-      lastTouchTime = Date.now();
-    }, false);
-
-    // Keyboard support
-    row.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        activateRow(row);
-      }
-    }, false);
+  // Simple click handler for expand buttons
+  document.querySelectorAll('.expand-btn').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      const rowId = this.getAttribute('data-row');
+      const row = document.getElementById(rowId);
+      if (!row) return;
+      
+      const idx = rowId.replace('r','');
+      const detail = document.getElementById('di' + idx);
+      
+      closeOthers(rowId);
+      row.classList.toggle('open');
+      if (detail) detail.classList.toggle('open');
+    });
   });
 })();
 </script>
