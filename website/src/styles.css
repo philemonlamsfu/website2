@@ -75,6 +75,13 @@ h1 em{font-style:italic;font-weight:300}
   box-shadow: 0 2px 24px rgba(0,0,0,0.05);
 }
 
+@media (max-width: 600px) {
+  .exp-wrap {
+    overflow: visible;
+    border-radius: 12px;
+  }
+}
+
 .exp-table-header {
   display:flex;align-items:center;justify-content:space-between;
   padding:14px 22px;
