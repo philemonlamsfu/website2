@@ -1,0 +1,198 @@
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#fff;
+  --text:#111;
+  --muted:#999;
+  --border:rgba(0,0,0,0.08);
+  --sql-blue: #007acc; 
+  --sql-green: #22863a; 
+}
+body{font-family:'Figtree',-apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:var(--text);min-height:100vh;overflow-x:hidden}
+
+header{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:20px 52px;
+  background:rgba(255,255,255,0.92);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(0,0,0,0.06);
+}
+.logo{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:500;letter-spacing:-0.01em}
+.avatar{width:30px;height:30px;border-radius:50%;background:#eee;display:flex;align-items:center;justify-content:center;overflow:hidden;border:1px solid var(--border)}
+.avatar img{width:100%;height:100%;object-fit:cover}
+
+.header-social { display: flex; align-items: center; }
+.linkedin-icon {
+  fill: #ccc;
+  width: 20px;
+  height: 20px;
+  transition: fill 0.2s ease, transform 0.2s ease;
+  display: block;
+}
+.linkedin-icon:hover {
+  fill: #0077b5;
+  transform: translateY(-1px);
+}
+
+main{padding-top:80px}
+section{padding:40px 52px;max-width:1100px;margin:0 auto} 
+
+.hero{display:flex;align-items:center;padding-top:60px;padding-bottom:20px}
+.hero-inner{max-width:680px}
+h1{font-size:clamp(42px,5.5vw,64px);font-weight:300;line-height:1.1;letter-spacing:-.03em;margin-bottom:28px}
+h1 em{font-style:italic;font-weight:300}
+
+.section-label{font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+
+.sql-editor {
+  background: transparent;
+  color: #666;
+  padding: 0 0 24px 0; 
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  border: none;
+}
+.sql-keyword { color: var(--sql-blue); font-weight: 600; }
+.sql-star { color: #555; }
+.sql-table { color: var(--sql-green); }
+
+.cursor {
+  display: inline-block;
+  width: 8px;
+  height: 15px;
+  background: #bbb;
+  margin-left: 4px;
+  vertical-align: middle;
+  animation: blink 1s step-end infinite;
+}
+@keyframes blink { from, to { background: transparent; } 50% { background: #bbb; } }
+
+.exp-wrap {
+  border: 1px solid var(--border);
+  border-radius: 16px; 
+  overflow: hidden;
+  box-shadow: 0 2px 24px rgba(0,0,0,0.05);
+}
+
+.exp-table-header {
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 22px;
+  background:rgba(0,0,0,0.018);
+  border-bottom:1px solid var(--border);
+}
+.exp-table-name{display:flex;align-items:center;gap:9px}
+.exp-table-name svg{width:13px;height:13px;stroke:#888;fill:none;stroke-width:1.8}
+.exp-table-name span{font-size:12px;font-weight:600;color:#444;font-family:'SF Mono','Fira Code',monospace;}
+.exp-row-count{font-size:11px;color:#ccc;font-weight:300}
+
+table{ width:100%; border-collapse:collapse; table-layout:fixed; }
+
+col.c-key { width: 70px; }
+col.c-company { width: 240px; }
+col.c-role { width: 220px; }
+col.c-type { width: 140px; }
+col.c-loc { width: auto; }
+col.c-expand { width: 50px; }
+
+thead tr{ background:rgba(0,0,0,0.01); border-bottom:1px solid var(--border); }
+thead th{
+  padding:10px 18px;
+  font-size:11px;font-weight:500;color:#bbb;
+  font-family:'SF Mono','Fira Code',monospace;
+  text-align:left;
+  border-right:1px solid var(--border);
+}
+thead th:last-child{border-right:none}
+
+tbody tr.main-row{ border-bottom:1px solid rgba(0,0,0,0.05); }
+tbody tr.main-row.open{background:rgba(0,0,0,0.025)}
+
+.expand-btn{ background:none; border:none; cursor:pointer; padding:4px 8px; display:flex; align-items:center; justify-content:center; color:#ccc; transition:color .2s ease; }
+.expand-btn:hover{ color:#888; }
+.expand-btn:active{ color:#555; }
+
+tbody tr.main-row td{
+  padding:16px 18px;
+  vertical-align:middle;
+  border-right:1px solid rgba(0,0,0,0.06);
+  font-size:13px;font-weight:300;color:#555;
+}
+tbody tr.main-row td:last-child{border-right:none}
+
+.key-badge{
+  display:inline-flex;align-items:center;justify-content:center;
+  font-size:9px;font-weight:700;border-radius:5px;padding:4px 8px;
+  font-family:'SF Mono','Fira Code',monospace;
+}
+.pk{background:#111;color:#fff}
+.fk{background:rgba(0,0,0,0.06);color:#888}
+
+.company-name{font-size:13px;font-weight:600;color:var(--text);display:block;line-height:1.3;margin-bottom:2px}
+.company-period{font-size:11px;font-weight:300;color:#bbb;display:block}
+.role-text{font-weight:500;color:#444}
+
+.loc-wrap{ display:flex; align-items:center; justify-content:space-between; gap:8px; width:100%; }
+.chevron{ font-size:11px; color:#ccc; transition:transform .22s ease; flex-shrink:0; }
+tr.main-row.open .chevron{transform:rotate(180deg)}
+
+.detail-inner{
+  background:rgba(0,0,0,0.012);
+  border-top:1px solid rgba(0,0,0,0.05);
+  overflow:hidden;
+  max-height:0;
+  transition:max-height .28s ease;
+}
+.detail-inner.open{max-height:1000px} 
+
+.about-box {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    padding: 24px 18px 24px 88px;
+}
+.company-logo {
+    width: 48px; height: 48px; background: #fff; border-radius: 8px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid var(--border); overflow: hidden;
+}
+.company-logo img { width: 100%; height: 100%; object-fit: contain; padding: 4px; }
+.about-content { max-width: 600px; }
+.about-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: #bbb; margin-bottom: 6px; margin-top: 20px; }
+.about-label:first-child { margin-top: 0; }
+.about-text { font-size: 13px; line-height: 1.6; color: #666; }
+.stack-badge { font-size: 11px; color: var(--muted); font-family: 'SF Mono', monospace; margin-top: 4px; }
+
+.click-hint { display: flex; align-items: center; gap: 6px; margin-top: 12px; color: #bbb; font-size: 11px; font-weight: 300; }
+footer{text-align:center;padding:40px 52px;font-size:12px;font-weight:300;color:#ccc;border-top:1px solid rgba(0,0,0,0.05)}
+
+/* --- MOBILE SURGERY --- */
+@media (max-width: 850px) {
+  header { padding: 15px 24px; }
+  section { padding: 30px 24px; }
+
+  /* Allow table to resize to screen */
+  table { table-layout: auto !important; }
+
+  /* Hide Type & Location columns */
+  thead th:nth-child(4), thead th:nth-child(5),
+  tbody td:nth-child(4), tbody td:nth-child(5),
+  col:nth-child(4), col:nth-child(5) {
+    display: none !important;
+  }
+
+  /* Fix the Dropdown Content so it isn't squeezed */
+  .about-box { 
+    padding: 24px 18px; /* Removed the 88px left padding */
+    flex-direction: column;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Hide Key column on very small phones to prevent horizontal scroll */
+  thead th:nth-child(1), tbody td:nth-child(1), col:nth-child(1) {
+    display: none !important;
+  }
+  tbody tr.main-row td { padding: 12px 10px; border-right: none; }
+}
