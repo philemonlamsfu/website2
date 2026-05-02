@@ -236,3 +236,8 @@ footer{text-align:center;padding:40px 52px;font-size:12px;font-weight:300;color:
   }
   tbody tr.main-row td { padding: 12px 10px; border-right: none; }
 }
+
+.mobile-detail {
+  border-top: 1px solid var(--border);
+  background: rgba(0,0,0,0.012);
+}

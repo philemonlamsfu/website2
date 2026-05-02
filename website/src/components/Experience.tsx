@@ -1,15 +1,23 @@
-import { Fragment } from 'react';
+import { Fragment, useState, useEffect } from 'react';
 import { experiences } from '../data';
 import type { Experience as ExperienceType } from '../types';
 
 const Experience = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth <= 850);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
+
   return (
     <section id="work" style={{ paddingTop: 0 }}>
       <div className="sql-editor">
         <span className="sql-keyword">SELECT</span> <span className="sql-star">*</span>{' '}
         <span className="sql-keyword">FROM</span> <span className="sql-table">philemon_lam.experience</span>;<span className="cursor"></span>
       </div>
-
       <div className="exp-wrap">
         <div className="exp-table-header">
           <div className="exp-table-name">
@@ -22,7 +30,6 @@ const Experience = () => {
           </div>
           <span className="exp-row-count">{experiences.length} rows</span>
         </div>
-
         <table>
           <colgroup>
             <col className="c-key" />
@@ -57,29 +64,52 @@ const Experience = () => {
                     <span>{exp.location}</span>
                   </td>
                 </tr>
-                <tr key={`detail-${exp.id}`} className="detail-row">
-                  <td colSpan={5}>
-                    <div className="detail-inner open">
-                      <div className="about-box">
-                        <div className="company-logo">
-                          <img src={exp.logo} alt={`${exp.company} Logo`} />
-                        </div>
-                        <div className="about-content">
-                          <div className="about-label">{exp.details.aboutLabel}</div>
-                          <p className="about-text">{exp.details.about}</p>
-                          <div className="about-label">Role Overview</div>
-                          <p className="about-text">{exp.details.roleOverview}</p>
-                          <div className="about-label">Software & Tools</div>
-                          <p className="stack-badge">{exp.details.tools}</p>
+
+                {/* Desktop: detail inside table */}
+                {!isMobile && (
+                  <tr key={`detail-${exp.id}`} className="detail-row">
+                    <td colSpan={5}>
+                      <div className="detail-inner open">
+                        <div className="about-box">
+                          <div className="company-logo">
+                            <img src={exp.logo} alt={`${exp.company} Logo`} />
+                          </div>
+                          <div className="about-content">
+                            <div className="about-label">{exp.details.aboutLabel}</div>
+                            <p className="about-text">{exp.details.about}</p>
+                            <div className="about-label">Role Overview</div>
+                            <p className="about-text">{exp.details.roleOverview}</p>
+                            <div className="about-label">Software & Tools</div>
+                            <p className="stack-badge">{exp.details.tools}</p>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </td>
-                </tr>
+                    </td>
+                  </tr>
+                )}
               </Fragment>
             ))}
           </tbody>
         </table>
+
+        {/* Mobile: detail outside table */}
+        {isMobile && experiences.map((exp: ExperienceType) => (
+          <div key={`mobile-detail-${exp.id}`} className="mobile-detail">
+            <div className="about-box">
+              <div className="company-logo">
+                <img src={exp.logo} alt={`${exp.company} Logo`} />
+              </div>
+              <div className="about-content">
+                <div className="about-label">{exp.details.aboutLabel}</div>
+                <p className="about-text">{exp.details.about}</p>
+                <div className="about-label">Role Overview</div>
+                <p className="about-text">{exp.details.roleOverview}</p>
+                <div className="about-label">Software & Tools</div>
+                <p className="stack-badge">{exp.details.tools}</p>
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
     </section>
   );
