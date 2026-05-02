@@ -75,13 +75,6 @@ h1 em{font-style:italic;font-weight:300}
   box-shadow: 0 2px 24px rgba(0,0,0,0.05);
 }
 
-@media (max-width: 600px) {
-  .exp-wrap {
-    overflow: visible;
-    border-radius: 12px;
-  }
-}
-
 .exp-table-header {
   display:flex;align-items:center;justify-content:space-between;
   padding:14px 22px;
@@ -193,11 +186,18 @@ footer{text-align:center;padding:40px 52px;font-size:12px;font-weight:300;color:
 
   /* Fix the Dropdown Content so it isn't squeezed */
   .about-box { 
-    padding: 24px 18px; /* Removed the 88px left padding */
+    padding: 24px 18px;
     flex-direction: column;
     gap: 16px;
   }
+
+  /* Fix overflow clipping the detail rows */
+  .exp-wrap {
+    overflow: visible;
+    border-radius: 12px;
+  }
 }
+
 @media (max-width: 600px) {
   header { padding: 12px 20px; }
   section { padding: 20px 20px; }
@@ -236,5 +236,3 @@ footer{text-align:center;padding:40px 52px;font-size:12px;font-weight:300;color:
   }
   tbody tr.main-row td { padding: 12px 10px; border-right: none; }
 }
-
-
