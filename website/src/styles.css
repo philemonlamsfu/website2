@@ -21,19 +21,6 @@ header{
 .avatar{width:30px;height:30px;border-radius:50%;background:#eee;display:flex;align-items:center;justify-content:center;overflow:hidden;border:1px solid var(--border)}
 .avatar img{width:100%;height:100%;object-fit:cover}
 
-.header-social { display: flex; align-items: center; }
-.linkedin-icon {
-  fill: #ccc;
-  width: 20px;
-  height: 20px;
-  transition: fill 0.2s ease, transform 0.2s ease;
-  display: block;
-}
-.linkedin-icon:hover {
-  fill: #0077b5;
-  transform: translateY(-1px);
-}
-
 .header-nav {
   display: flex;
   gap: 16px;
