@@ -47,9 +47,6 @@ const About = () => {
                 </div>
                 <div className="mobile-detail">
                   <div className="about-box about-page-box">
-                    <div className="company-logo about-page-logo">
-                      <img src="/ME.jpeg" alt="Philemon Lam" />
-                    </div>
                     <div className="about-content">
                       <div className="about-label">ABOUT ME</div>
                       <p className="about-text">{idea.details.description}</p>
@@ -99,9 +96,6 @@ const About = () => {
                     <td colSpan={5}>
                       <div className="detail-inner open">
                         <div className="about-box about-page-box">
-                          <div className="company-logo about-page-logo">
-                            <img src="/ME.jpeg" alt="Philemon Lam" />
-                          </div>
                           <div className="about-content">
                             <div className="about-label">ABOUT ME</div>
                             <p className="about-text">{idea.details.description}</p>
