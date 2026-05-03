@@ -34,6 +34,34 @@ header{
   transform: translateY(-1px);
 }
 
+.header-nav {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.nav-btn {
+  background: none;
+  border: none;
+  padding: 8px 12px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #999;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  border-radius: 4px;
+  text-transform: none;
+}
+
+.nav-btn:hover {
+  color: #555;
+}
+
+.nav-btn.active {
+  color: var(--text);
+  background: rgba(0, 0, 0, 0.05);
+}
+
 main{padding-top:80px}
 section{padding:40px 52px;max-width:1100px;margin:0 auto} 
 
@@ -146,7 +174,7 @@ tr.main-row.open .chevron{transform:rotate(180deg)}
   max-height:0;
   transition:max-height .28s ease;
 }
-.detail-inner.open{max-height:1000px} 
+.detail-inner.open{max-height:5000px} 
 
 .about-box {
     display: flex;
@@ -154,17 +182,44 @@ tr.main-row.open .chevron{transform:rotate(180deg)}
     gap: 24px;
     padding: 24px 18px 24px 88px;
 }
+.about-page-box {
+    align-items: center;
+    padding: 24px 18px;
+}
 .company-logo {
     width: 48px; height: 48px; background: #fff; border-radius: 8px; flex-shrink: 0;
     display: flex; align-items: center; justify-content: center;
     border: 1px solid var(--border); overflow: hidden;
 }
-.company-logo img { width: 100%; height: 100%; object-fit: contain; padding: 4px; }
+.about-page-logo {
+    width: 96px;
+    height: 96px;
+}
+.company-logo img { width: 100%; height: 100%; object-fit: cover; padding: 4px; }
 .about-content { max-width: 600px; }
-.about-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: #bbb; margin-bottom: 6px; margin-top: 20px; }
-.about-label:first-child { margin-top: 0; }
-.about-text { font-size: 13px; line-height: 1.6; color: #666; }
+.about-name { display: block; font-weight: 400; color: var(--text); }
+.about-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: #bbb; margin-bottom: 6px; margin-top: 0; }
+.about-text { font-size: 13px; line-height: 1.8; color: #666; }
 .stack-badge { font-size: 11px; color: var(--muted); font-family: 'SF Mono', monospace; margin-top: 4px; }
+
+.song-cell { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.spotify-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 12px;
+  background: #1db954;
+  color: #fff;
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 700;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+.spotify-button:hover {
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+}
 
 .click-hint { display: flex; align-items: center; gap: 6px; margin-top: 12px; color: #bbb; font-size: 11px; font-weight: 300; }
 footer{text-align:center;padding:40px 52px;font-size:12px;font-weight:300;color:#ccc;border-top:1px solid rgba(0,0,0,0.05)}

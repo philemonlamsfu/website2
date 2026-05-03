@@ -14,3 +14,19 @@ export interface Experience {
   };
   logo: string;
 }
+
+export interface Idea {
+  id: string;
+  key: 'PK' | 'FK';
+  title: string;
+  date: string;
+  category: string;
+  status: string;
+  topic: string;
+  details: {
+    description: string;
+    thoughts: string;
+    relevance: string;
+  };
+  icon: string;
+}

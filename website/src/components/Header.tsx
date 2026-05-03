@@ -1,11 +1,27 @@
-const Header = () => {
+interface HeaderProps {
+  currentPage: 'experience' | 'about';
+  onPageChange: (page: 'experience' | 'about') => void;
+}
+
+const Header = ({ currentPage, onPageChange }: HeaderProps) => {
   return (
     <header>
       <div className="logo">
-        <div className="avatar">
-          <img src="/ME.jpeg" alt="Philemon Lam" />
-        </div>
         Philemon Lam
+      </div>
+      <div className="header-nav">
+        <button
+          className={`nav-btn ${currentPage === 'experience' ? 'active' : ''}`}
+          onClick={() => onPageChange('experience')}
+        >
+          Experience
+        </button>
+        <button
+          className={`nav-btn ${currentPage === 'about' ? 'active' : ''}`}
+          onClick={() => onPageChange('about')}
+        >
+          About
+        </button>
       </div>
       <div className="header-social">
         <a href="https://www.linkedin.com/in/philemon-lam/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
