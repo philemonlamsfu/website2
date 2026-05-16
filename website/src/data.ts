@@ -4,7 +4,7 @@ export const experiences: Experience[] = [
   {
     id: 'r1',
     key: 'PK',
-    company: 'Connor, Clark & Lunn',
+    company: 'Connor, Clark & Lunn Financial Group',
     period: 'May 2026 – Present',
     role: 'Intern, Investment Data Architecture',
     type: 'Internship',
